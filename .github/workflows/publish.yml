@@ -39,6 +39,15 @@ jobs:
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
+      - name: Push image (latest)
+        run: |
+          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=latest
+          docker tag $IMAGE_NAME $IMAGE_ID:latest
+          docker push $IMAGE_ID:latest
 
   push-docker:
     runs-on: ubuntu-latest
@@ -62,3 +71,10 @@ jobs:
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME greep/$IMAGE_NAME:$VERSION
           docker push greep/$IMAGE_NAME:$VERSION
+          
+      - name: Push image
+        run: |
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=latest
+          docker tag $IMAGE_NAME greep/$IMAGE_NAME:latest
+          docker push greep/$IMAGE_NAME:latest
