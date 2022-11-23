@@ -1,3 +1,5 @@
+# ⚠ This repository/image is now deprecated, please use [this image](https://hub.docker.com/r/uzurka/pyplanet-docker) instread
+
 # PyPlanet Docker
 
 ## Environnement variables
